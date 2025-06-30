@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolher Sessão</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Escolha o horário e a quantidade</h1>
+    <div class="user-info" id="userInfoHeader"></div>
+  </header>
+  <main>
+    <div id="detalhesFilmeSessao"></div>
+    <div class="quantidade">
+      <button onclick="alterarQuantidade(-1)">-</button>
+      <span id="qtdIngressos">1</span>
+      <button onclick="alterarQuantidade(1)">+</button>
+    </div>
+    
+    <h3>Subtotal: R$<span id="subtotal">30</span>,00</h3>
+
+    <h3>Escolha o horário da sessão:</h3>
+    <div class="horarios">
+      <button data-hora="14:00">14:00</button>
+      <button data-hora="16:30">16:30</button>
+      <button data-hora="19:00">19:00</button>
+      <button data-hora="21:30">21:30</button>
+    </div>
+
+    <h3>Escolha os assentos:</h3>
+    <div class="sala">
+      <div class="assento" data-id="A1">A1</div>
+      <div class="assento" data-id="A2">A2</div>
+      <div class="assento" data-id="A3">A3</div>
+      <div class="assento" data-id="A4">A4</div>
+      <div class="assento" data-id="B5">B5</div>
+      <div class="assento" data-id="B6">B6</div>
+      <div class="assento" data-id="B7">B7</div>
+      <div class="assento" data-id="B8">B8</div>
+    </div>
+
+    <br><button onclick="goBack()" class="back-button">Voltar</button>
+    <button onclick="confirmarSessao()">Confirmar</button>
+  </main>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
+

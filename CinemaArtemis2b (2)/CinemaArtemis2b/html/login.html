@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Cinema Artemis</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎬 Cinema Artemis</h1>
+    <div class="user-info" id="userInfoHeader"></div>
+    <button onclick="goBack()" class="back-button">Voltar</button>
+  </header>
+  <main>
+    <section class="auth-container">
+      <h2>Login</h2>
+      <form id="loginForm" onsubmit="fazerLogin(event)">
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" placeholder="Seu e-mail" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" placeholder="Sua senha" required>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Entrar</button>
+        </div>
+      </form>
+      <p class="auth-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+      <p class="auth-link"><a href="index.html">Voltar para a página inicial</a></p>
+    </section>
+  </main>
+  <script src="../js/script.js"></script>
+  <footer class="rodape">
+    <h2>Sobre nós</h2>
+    <p><strong>Telefone:</strong> (11) 91234-5678</p>
+    <p><strong>E-mail:</strong> contato@cinemaauto.com</p>
+    <p><strong>Endereço:</strong> Av. das Estrelas, 123 - Centro, São Paulo - SP</p>
+  </footer>
+</body>
+</html>
+

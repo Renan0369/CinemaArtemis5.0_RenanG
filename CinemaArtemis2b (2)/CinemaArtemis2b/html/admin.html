@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel de Administração - Cinema Artemis</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎬 Cinema Artemis - Painel de Administração</h1>
+    <div class="user-info" id="userInfoHeader"></div>
+    <button onclick="goBack()" class="back-button">Voltar</button>
+  </header>
+  <main>
+    <section class="admin-container">
+      <h2>Painel de Controle</h2>
+      
+      <div class="admin-stats">
+        <div class="stat-card">
+          <h3>Usuários</h3>
+          <p id="totalUsuarios">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Vendas</h3>
+          <p>24</p>
+        </div>
+        <div class="stat-card">
+          <h3>Filmes</h3>
+          <p id="totalFilmes">3</p>
+        </div>
+      </div>
+      
+      <!-- Seção de Gerenciamento de Filmes -->
+      <h2>Gerenciamento de Filmes</h2>
+      <div class="admin-section">
+        <h3>Adicionar Novo Filme</h3>
+        <form id="formAdicionarFilme" onsubmit="adicionarFilme(event)">
+          <div class="form-group">
+            <label for="nomeFilme">Nome do Filme:</label>
+            <input type="text" id="nomeFilme" placeholder="Ex: Vingadores: Ultimato" required>
+          </div>
+          <div class="form-group">
+            <label for="descricaoFilme">Descrição:</label>
+            <input type="text" id="descricaoFilme" placeholder="Ex: Uma aventura épica dos heróis" required>
+          </div>
+          <div class="form-group">
+            <label for="precoFilme">Preço (R$):</label>
+            <input type="number" id="precoFilme" placeholder="30" min="1" required>
+          </div>
+          <div class="form-group">
+            <label for="capaFilme">URL da Capa:</label>
+            <input type="url" id="capaFilme" placeholder="https://exemplo.com/capa.jpg" required>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Adicionar Filme</button>
+          </div>
+        </form>
+        
+        <h3>Filmes Cadastrados</h3>
+        <div id="listaFilmes">
+          <!-- Filmes serão carregados aqui pelo JavaScript -->
+        </div>
+      </div>
+      
+      <!-- Seção de Gerenciamento de Usuários -->
+      <h2>Gerenciamento de Usuários</h2>
+      <div class="admin-section">
+        <button onclick="exportarUsuariosCSV()">Exportar Usuários para CSV</button>
+        <div id="listaUsuarios">
+          <!-- Usuários serão carregados aqui pelo JavaScript -->
+          <p>Carregando usuários...</p>
+        </div>
+      </div>
+      
+      <h2>Ações Rápidas</h2>
+      <button onclick="window.location.href='index.html'">Voltar para o Site</button>
+    </section>
+  </main>
+  
+  <footer class="rodape">
+    <h2>Cinema Artemis - Área Administrativa</h2>
+    <p><strong>Versão:</strong> 1.0.0</p>
+    <p><strong>Último acesso:</strong> <span id="ultimoAcesso"></span></p>
+  </footer>
+  
+  <script src="../js/script.js"></script>
+  <script>
+    // Script específico para a página de administração
+    document.addEventListener('DOMContentLoaded', function() {
+      // Atualiza a data de último acesso
+      const agora = new Date();
+      document.getElementById('ultimoAcesso').textContent = agora.toLocaleString('pt-BR');
+      
+      // Atualiza o contador de usuários
+      const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
+      document.getElementById('totalUsuarios').textContent = usuarios.length;
+      
+      // Atualiza o contador de filmes
+      const filmes = JSON.parse(localStorage.getItem("filmes") || "[]");
+      document.getElementById('totalFilmes').textContent = filmes.length;
+    });
+  </script>
+</body>
+</html>
+
