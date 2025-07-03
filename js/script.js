@@ -267,9 +267,13 @@ function alterarQuantidade(valor) {
     subtotalSpan.textContent = quantidade * filmeSelecionado.preco;  // Atualiza o subtotal
   }
 
-  // Salva no localStorage
+  // Salva no localStorage com base no preço real do filme
+if (filmeSelecionado) {
   localStorage.setItem("quantidade", quantidade);
-  localStorage.setItem("subtotal", quantidade * precoIngresso);
+  localStorage.setItem("subtotal", quantidade * filmeSelecionado.preco);
+}
+
+
 }
 
 // Função para confirmar a sessão
@@ -905,44 +909,44 @@ function editarFilme(filme) {
 
 function adicionarFilme(event) {
   event.preventDefault();
-  
+
   // Verifica se é admin
   if (!verificarAdmin()) {
     alert("Apenas administradores podem adicionar filmes.");
     return;
   }
-  
+
   // Obtém os dados do formulário
   const nome = document.getElementById("nomeFilme").value;
   const descricao = document.getElementById("descricaoFilme").value;
   const preco = parseInt(document.getElementById("precoFilme").value);
   const capa = document.getElementById("capaFilme").value;
-  
+
   // Busca filmes cadastrados
   const filmes = JSON.parse(localStorage.getItem("filmes") || "[]");
-  
+
   // Verifica se é uma edição (procura pelo nome no array)
   const filmeExistenteIndex = filmes.findIndex(f => f.nome === nome);
-  
+
   if (filmeExistenteIndex !== -1) {
     // Se encontrou, remove o filme antigo
     filmes.splice(filmeExistenteIndex, 1);
   }
-  
+
   // Gera um ID único para o novo filme
   const id = filmes.length > 0 ? Math.max(...filmes.map(f => f.id)) + 1 : 1;
-  
+
   // Adiciona o novo filme
   const novoFilme = { id, nome, descricao, preco, capa };
   filmes.push(novoFilme);
   localStorage.setItem("filmes", JSON.stringify(filmes));
-  
+
   // Limpa o formulário
   document.getElementById("formAdicionarFilme").reset();
-  
+
   // Atualiza a lista de filmes
   carregarFilmesAdmin();
-  
+
   // Mostra mensagem de sucesso
   alert(`Filme "${nome}" ${filmeExistenteIndex !== -1 ? 'editado' : 'adicionado'} com sucesso!`);
 }
